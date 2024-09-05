@@ -20,6 +20,10 @@ connection(url).then(()=>{
 app.use(express.json());
 app.use(cookieParser());
 
+app.get('/',(req,res)=>{
+    res.send("hello from Rishi")
+})
+
 
 app.use("/user",router);
 app.use("/custom",auth,reqRouter); 
