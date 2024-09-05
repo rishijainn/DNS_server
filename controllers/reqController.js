@@ -12,6 +12,7 @@ const getIp=async(req,res)=>{
     const record=req.params.record||'A';
 
     const compositeKey=`${domainName}${record}`;    
+    console.log(compositeKey<<"composite key");
 
 
     const cacheEntry=cacheMemory.get(compositeKey);
