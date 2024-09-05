@@ -14,7 +14,7 @@ const app= express();
 
 
 connection(url).then(()=>{
-    console.log("connection establised")
+    console.log("connection establised");
 })
 
 app.use(express.json());
