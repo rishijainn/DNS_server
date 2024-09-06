@@ -6,6 +6,8 @@ const dns= new DNS2({dns:'8.8.8.8'});
 
 const ttl=300;
 
+console.log("hello baccho")
+
 
 const getIp=async(req,res)=>{
     const domainName=req.params.domain;

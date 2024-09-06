@@ -20,8 +20,12 @@ connection(url).then(()=>{
 app.use(express.json());
 app.use(cookieParser());
 
-app.get('/',(req,res)=>{
-    res.send("hello from Rishi")
+app.get('/',auth,(req,res)=>{
+    res.send(
+        `hello from Rishi ,Welcome to the Complete Backend Project (API)
+
+This project provides a REST API for [brief description of your project, e.g., managing tasks, handling user authentication, etc.]. Below are the instructions to get started and test the API using Postman. `
+    )
 })
 
 
