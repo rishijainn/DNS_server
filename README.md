@@ -16,17 +16,26 @@ Endpoints
 
 1) User Authentication
 POST /user/signup
+pass data in body
+eg:-
 
-2) Register a new user.
+{
+  "name" : "user"
+  "username": "example_user",
+  "password": "example_password"
+  "role" : "user_role"
+}
+
+3) Register a new user.
 POST /user/login
 Login and receive a token for authentication.
 
-3) DNS Record Handling
+4) DNS Record Handling
 GET /custom/get/:domain/:record
 Fetch the DNS record (A or CNAME) for a specific domain.
 Example: /custom/get/www.example.com/A
 
-4) PATCH /custom/update/:id
+5) PATCH /custom/update/:id
 Update an existing DNS entry (admin access required).
 
 Setup
