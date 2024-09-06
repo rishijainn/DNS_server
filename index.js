@@ -20,7 +20,7 @@ connection(url).then(()=>{
 app.use(express.json());
 app.use(cookieParser());
 
-app.get('/',auth,(req,res)=>{
+app.get('/',(req,res)=>{
     res.send(
         "hello from Rishi ,It is a  Backend Project (API) , use postman for testing"
     );
