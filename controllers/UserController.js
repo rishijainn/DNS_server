@@ -5,43 +5,61 @@ require("dotenv").config();
 const secretKey=process.env.SecretKey;
 
 
-const SignUp=async(req,res)=>{
-    const {name,email,password,role}=req.body;
+const SignUp = async (req, res) => {
+    const { name, email, password, role } = req.body;
 
-    if(!email||!password){
+    if (!email || !password) {
         return res.status(400).json({
-            success:false,
-            message:"fill all the credentials"
-        })
+            success: false,
+            message: "Fill all the credentials",
+        });
     }
 
-    const isEmail=await Userdomain.findOne({email});
+    // Check if email already exists
+    const isEmail = await Userdomain.findOne({ email });
 
+    if (isEmail) {
+        return res.status(400).json({
+            success: false,
+            message: "Email already exists",
+        });
+    }
+
+    // Hash the password
     let hashedPassword;
-    try{
-        hashedPassword= await bcrypt.hash(password,10);
-    }catch(error){
+    try {
+        console.log("Password before hashing:", password); // Debugging
+        if (!password || typeof password !== "string") {
+            return res.status(400).json({
+                success: false,
+                message: "Password is missing or invalid",
+            });
+        }
+        
+        hashedPassword = await bcrypt.hash(password, 10);
+        console.log("Hashed password:", hashedPassword); // Debugging
+    } catch (error) {
+        console.error("Error while hashing password:", error); // Debugging
         return res.status(500).json({
-            success:false,
-            message:"there is some problem in hashing password"
-        })
-    }
-    if(isEmail){
-        return res.status(400).json({
-            success:false,
-            message:"email already exist"
-        })
+            success: false,
+            message: "There is some problem in hashing password",
+        });
     }
 
-    
-
-    const user=  await Userdomain.create({name,email,password:hashedPassword,role});
+    // Create the user
+    const user = await Userdomain.create({
+        name,
+        email,
+        password: hashedPassword,
+        role,
+    });
 
     return res.status(200).json({
-        success:true,
-        message:"successfully signedIn"
-    })
-}
+        success: true,
+        message: "Successfully signed up",
+    });
+};
+
 
 const login=async(req,res)=>{
     const {email,password}=req.body;

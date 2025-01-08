@@ -8,6 +8,8 @@ require("dotenv").config();
 
 const url=process.env.DbUrl;
 const portNo=process.env.portNo;
+console.log(portNo);
+console.log(url);
 
 
 const app= express();
