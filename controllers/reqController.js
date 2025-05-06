@@ -66,7 +66,7 @@ const getIp=async(req,res)=>{
         })
     }
 
-    //upscale to the google (8.8.8.8)
+   
     let result;
     try{
         
@@ -131,7 +131,7 @@ const getIp=async(req,res)=>{
 }
 
 const updData=async(req,res)=>{
-    //check wether the user is admin or not 
+    
     const role=req.user.role;
     console.log(role);
     if(role!=='admin'){
