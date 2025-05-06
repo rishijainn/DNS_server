@@ -15,7 +15,7 @@ const SignUp = async (req, res) => {
         });
     }
 
-    // Check if email already exists
+  
     const isEmail = await Userdomain.findOne({ email });
 
     if (isEmail) {
@@ -25,10 +25,10 @@ const SignUp = async (req, res) => {
         });
     }
 
-    // Hash the password
+
     let hashedPassword;
     try {
-        console.log("Password before hashing:", password); // Debugging
+        console.log("Password before hashing:", password); 
         if (!password || typeof password !== "string") {
             return res.status(400).json({
                 success: false,
@@ -37,16 +37,16 @@ const SignUp = async (req, res) => {
         }
         
         hashedPassword = await bcrypt.hash(password, 10);
-        console.log("Hashed password:", hashedPassword); // Debugging
+        console.log("Hashed password:", hashedPassword); 
     } catch (error) {
-        console.error("Error while hashing password:", error); // Debugging
+        console.error("Error while hashing password:", error); 
         return res.status(500).json({
             success: false,
             message: "There is some problem in hashing password",
         });
     }
 
-    // Create the user
+   
     const user = await Userdomain.create({
         name,
         email,
